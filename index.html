@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Shopping List</h1>
+  <label for="new-item">Enter a new item:</label>
+  <input type="text" id="new-item" />
+  <button id="add-item">Add Item</button>
+  <ul id="shopping-list"></ul>
+
+  <script>
+    // Step 1: Create references to the list, input, and button elements
+    const shoppingList = document.getElementById('shopping-list');
+    const input = document.getElementById('new-item');
+    const addButton = document.getElementById('add-item');
+
+    // Step 2: Create a function that runs when the button is clicked
+    addButton.addEventListener('click', function () {
+      // Step 3: Store the current value of the input element in a variable
+      const newItemText = input.value;
+
+      // Step 4: Empty the input element
+      input.value = '';
+
+      // Step 5: Create new elements - list item, span, and button
+      const listItem = document.createElement('li');
+      const itemSpan = document.createElement('span');
+      const deleteButton = document.createElement('button');
+
+      // Step 6: Append the span and button as children of the list item
+      listItem.appendChild(itemSpan);
+      listItem.appendChild(deleteButton);
+
+      // Step 7: Set the text content of the span and button
+      itemSpan.textContent = newItemText;
+      deleteButton.textContent = 'Delete';
+
+      // Step 8: Append the list item as a child of the list
+      shoppingList.appendChild(listItem);
+
+      // Step 9: Attach an event handler to the delete button to remove the list item
+      deleteButton.addEventListener('click', function () {
+        shoppingList.removeChild(listItem);
+      });
+
+      // Step 10: Focus the input element for the next shopping list item
+      input.focus();
+    });
+  </script>
+</body>
+</html>
